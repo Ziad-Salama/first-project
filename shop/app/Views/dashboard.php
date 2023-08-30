@@ -7,10 +7,17 @@ if (session('id')) {
 
     <?= $this->section('body-content') ?>
 
-    <main class="main-content position-relative border-radius-lg ">
-        <!-- Navbar -->
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
 
-        <!-- End Navbar -->
+    <!-- start side bar -->
+    <?= $this->include("partial/sidebar.php")  ?>
+
+    <main class="main-content position-relative border-radius-lg ">
+
+        <!-- Navbar -->
+        <?= $this->include("partial/navbar.php")  ?>
+
+        <!-- static status -->
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -418,6 +425,7 @@ if (session('id')) {
                 </div>
             </footer>
         </div>
+
     </main>
     <div class="fixed-plugin">
         <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">

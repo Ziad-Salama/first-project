@@ -7,12 +7,6 @@ use App\Models\UserModel;
 
 class LoginController extends BaseController
 {
-    // public $db;
-
-    // public function __construct()
-    // {
-    //     $this->db = \config\Database::connect();
-    // }
     public function login()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

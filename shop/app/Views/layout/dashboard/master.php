@@ -1,5 +1,22 @@
-<?= $this->include('partial/dashboard/header') ?>
+<?php
+$pageName = 'Dashboard';
+?>
+<!DOCTYPE html>
+<html lang="en">
 
-<?= $this->renderSection('body-content') ?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= isset($pageName) ? $pageName : 'Page' ?></title>
 
-<?= $this->include('partial/dashboard/footer') ?>
+    <!-- header links -->
+    <?= $this->include('partial/dashboard/header'); ?>
+
+</head>
+
+<body class="g-sidenav-show   bg-gray-100">
+    <!-- main body content -->
+    <?= $this->renderSection('body-content'); ?>
+</body>
+
+</html>

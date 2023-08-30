@@ -31,23 +31,21 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// login and logout
 $routes->match(['get', 'post'], '/login', 'LoginController::login');
-
 $routes->get('logout', "LoginController::logout");
 
+// dashboard
 $routes->get('/dashboard', 'DashboardController::dashboard');
 
-$routes->get('/table', 'DashboardController::table');
-
-$routes->get('edit/(:num)', 'DashboardController::edit/$1');
-
-$routes->match(['get', 'post'], '/update/(:num)', 'DashboardController::update/$1');
-
-$routes->get('add-user', "DashboardController::addUser");
-
-$routes->match(["get", "post"], "insert", "DashboardController::insert");
-
-$routes->get('delete/(:num)', "DashboardController::delete/$1");
+// routes users [crud]
+$routes->get('/users', 'UserController::userGet');
+$routes->get('user-fetch', 'UserController::userFetch');
+$routes->post("user-insert", "UserController::userInsert");
+$routes->post('user-view', 'UserController::userView');
+$routes->post('user-edit', 'UserController::userEdit');
+$routes->post('user-update', 'UserController::userUpdate');
+$routes->post('user-delete', 'UserController::userDelete');
 
 
 /*
