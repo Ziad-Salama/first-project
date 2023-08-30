@@ -54,7 +54,25 @@ class UserController extends BaseController
             'rank' => $this->request->getPost('rank'),
         ];
 
-        if ($userModel->update($id, $data)) {
+        // get password from database to compare the password get form the user
+        $password_form_database = $userModel->select('password')->find($id);
+
+        // cheched is not equal hashed the password else mean it don't edit of password
+        if ($password_form_database['password'] != $data['password']) {
+            $data['password'] = password_hash("$data[password]", PASSWORD_DEFAULT);
+        }
+
+        // this is email has in the input has send
+        $email = $data['email'];
+
+        // checked the email
+        $checked_email = $userModel->where('email', $email)->where('id !=', $id)->first();
+
+        if ($checked_email) {
+            $data = ['status' => 'Use An Other Email'];
+            return $this->response->setJSON($data);
+        } else {
+            $userModel->update($id, $data);
             $data = ['status' => 'User updated successfully'];
             return $this->response->setJSON($data);
         }
@@ -104,7 +122,7 @@ class UserController extends BaseController
             'first-name' => $this->request->getPost('first-name'),
             'last-name' => $this->request->getPost('last-name'),
             'email' => $this->request->getPost('email'),
-            'password' => $this->request->getPost('password'),
+            'password' =>  password_hash("{$this->request->getPost('password')}", PASSWORD_DEFAULT),
             'postion' => $this->request->getPost('postion'),
             'rank' => $this->request->getPost('rank'),
         ];

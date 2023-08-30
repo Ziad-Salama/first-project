@@ -114,6 +114,7 @@ $pageName = 'Users';
                         $('.first-name').val(response['first-name']);
                         $('.last-name').val(response['last-name']);
                         $('.email').val(response['email']);
+                        $('.password').val(response['password']);
                         $('.postion').val(response['postion']);
 
                         // get the rank value and check one of choises
@@ -139,6 +140,7 @@ $pageName = 'Users';
                 'first-name': $('#first-name').val(),
                 'last-name': $('#last-name').val(),
                 'email': $('#email').val(),
+                'password': $('#password').val(),
                 'postion': $('#postion').val(),
                 'rank': $('#rank').val(),
             };
