@@ -82,7 +82,7 @@ class UserController extends BaseController
             ],
             'email' => [
                 'required' => 'Enter Your Email Please',
-                'valid_email' => 'The Email Must Be Validation',
+                'valid_email' => 'Please, Enter the valid Email',
             ],
             'password' => [
                 'required' => 'Enter Your Password Please'
@@ -109,9 +109,15 @@ class UserController extends BaseController
             'rank' => $this->request->getPost('rank'),
         ];
 
-        if ($userModel->insert($data)) {
-            $data = ['status' => 'User inserted successfully', 'data' => $data];
-            return $this->response->setJSON($data);
+        // check if this email has repeated or not
+        if ($userModel->where('email', $this->request->getPost('email'))->first()) {
+            return $this->response->setJSON(['status' => 'Email Already Exist']);
+        } else {
+            // insert the data
+            if ($userModel->insert($data)) {
+                $data = ['status' => 'User inserted successfully'];
+                return $this->response->setJSON($data);
+            }
         }
     }
 

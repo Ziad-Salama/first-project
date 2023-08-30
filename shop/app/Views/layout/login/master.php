@@ -1,4 +1,4 @@
-<?= $pageName = 'Login' ?>
+<?php $pageName = 'Login' ?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -97,7 +97,7 @@ $pageName = 'Users';
         }
     </script>
 
-    <!-- user edit -->
+    <!-- edit user -->
     <script>
         $(document).ready(function() {
             $(document).on('click', '.user-edit', function(e) {
@@ -161,7 +161,7 @@ $pageName = 'Users';
         });
     </script>
 
-    <!-- this script for the user add -->
+    <!-- add user -->
     <script>
         $(document).ready(function() {
             // when click in class ajaxuser-save that i put this class in the save button
@@ -244,6 +244,10 @@ $pageName = 'Users';
                         url: "<?= base_url('user-insert') ?>", // this ajax go to route user-insert
                         data: data,
                         success: function(response) {
+
+                            // when enter the wrong email show this msg
+                            $("#error_email").text(response.status.email);
+
                             // empty the all input
                             $('#userModal').find('input').val('');
 
@@ -256,6 +260,8 @@ $pageName = 'Users';
                             alertify.set('notifier', 'position', 'top-right');
                             alertify.success(response.status);
 
+                            // datatable
+                            new DataTable('#mydatatable');
                         }
                     });
                 }
